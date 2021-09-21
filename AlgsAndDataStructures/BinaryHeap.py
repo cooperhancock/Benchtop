@@ -86,7 +86,11 @@ def HeapSort(list):
 
 list1 = []
 for i in range(1000000000,0, -1):
-    list1.append(i)
+    try:
+        list1.append(i)
+    except:
+        print(list1[i-1])
+        raise
 print(list1[0], list1[1], list1[len(list1)-1])
 HeapSort(list1)
 print(list1[0], list1[1], list1[len(list1)-1])
