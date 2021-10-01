@@ -44,23 +44,6 @@ def heapify(heap, i):
         swap(heap, i, pos)
         heapify(heap, pos)
 
-# move item to appropriate place in heap
-# def heapify(heap, i):
-#     pos = i
-#     while True:
-#         max = heap[i]
-#         if left(i) <= heap_size(heap) and heap[left(i)] > max:
-#             max = heap[left(i)]
-#             pos = left(i)
-#         if right(i) <= heap_size(heap) and heap[right(i)] > max:
-#             max = heap[right(i)]
-#             pos = right(i)
-#         if not pos == i:
-#             swap(heap, i, pos)
-#             i = pos
-#         else:
-#             break
-
 # make list into heap format
 def make_heap(list):
     list.insert(0, len(list)) # 1-index array and track size of heap in pos 0
