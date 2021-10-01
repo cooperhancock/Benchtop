@@ -1,5 +1,10 @@
+// HeapSort
 // 1,000,000 i32s regular cargo run 9.06 secs
 // 1,000,000 i32s regular cargo run --release <1 sec
+
+// BinarySearch
+// avg time to run on 1,000,000 ints -> 0.036 secs
+// (with --release) -> 0.004 secs
 
 //mod HeapSort;
 //use HeapSort::*;
