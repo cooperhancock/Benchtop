@@ -39,6 +39,7 @@ fn dec_heap_size(heap: &mut Vec<i32>){
 fn heapify(heap: &mut Vec<i32>, i: usize){
     let mut max = heap[i];
     let mut pos: usize = i;
+    println!("size should be {}, is actually {}", heap_size(heap), heap.len());
     if left(i) <= heap_size(heap) as usize && heap[left(i)] > max{
         max = heap[left(i)];
         pos = left(i);
@@ -55,7 +56,7 @@ fn heapify(heap: &mut Vec<i32>, i: usize){
 
 fn make_heap(list: &mut Vec<i32>){
     list.insert(0, list.len() as i32);
-    for i in (0..(heap_size(list)/2) as usize).rev(){
+    for i in (1..(heap_size(list)/2) as usize).rev(){
         heapify(list, i);
     }
 }
@@ -72,6 +73,7 @@ fn extract_max(heap: &mut Vec<i32>) -> i32{
 
 pub fn heap_sort(list: &mut Vec<i32>){
     make_heap(list);
+    println!("heap made");
     let original_size = heap_size(list);
     for i in 1..(original_size + 1) as usize{
         let max = extract_max(list);
@@ -80,4 +82,5 @@ pub fn heap_sort(list: &mut Vec<i32>){
         dec_heap_size(list);
     }
     list.remove(0);
+    println!("heap sorted");
 }

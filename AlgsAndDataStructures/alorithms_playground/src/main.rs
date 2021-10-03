@@ -15,6 +15,10 @@ mod Utils;
 use Utils::*;
 mod MergeSort;
 use MergeSort::*;
+mod QuickSort;
+use QuickSort::*;
+mod HeapSort;
+use HeapSort::*;
 use std::time::SystemTime;
 
 fn main() {
@@ -23,13 +27,12 @@ fn main() {
     println!("| Welcome to the Benchtop |");
     println!("---------------------------");
     
-    let mut test_array: Vec<i32> = vec![1,30,5,4,8,2,7,9,3,1];
-    vec_print(&test_array);
-    println!("sorted? {}", is_sorted(&test_array, |x,y| x<=y));
-    merge_sort(&mut test_array);
-    vec_print(&test_array);
-    println!("sorted? {}", is_sorted(&test_array, |x,y| x<=y));
-    println!("has 30? {}", binary_search(&test_array, 30));
+    println!("test QuickSort");
+    test_sort(quick_sort, 10, 100);
+    println!("test MergeSort");
+    test_sort(merge_sort, 10, 100);
+    println!("test HeapSort");
+    test_sort(heap_sort, 10, 100);
     
     // let timeStart = SystemTime::now();
     // let mut big_array: Vec<i32> = Vec::with_capacity(1000000);
