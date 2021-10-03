@@ -1,4 +1,4 @@
-// avg time to run on 1,000,000 ints -> 0.006 secs
+// avg time to run on 1,000,000 ints -> 0.020 secs
 
 
 #include <iostream>

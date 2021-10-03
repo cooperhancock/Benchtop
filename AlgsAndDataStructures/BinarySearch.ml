@@ -1,3 +1,5 @@
+(*avg time to run on 1,000,000 ints -> 0.035 secs*)
+
 let rec binary_search (lst: int array) (p: int) (q: int) (v: int) : int =
   let m = (p+q)/2
   in if lst.(m) = v then m

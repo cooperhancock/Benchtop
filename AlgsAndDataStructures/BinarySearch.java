@@ -1,4 +1,4 @@
-// avg time to run on 1,000,000 ints -> 0.017 secs
+// avg time to run on 1,000,000 ints -> 0.052 secs
 
 public class BinarySearch {
     public static void main(String[] args){

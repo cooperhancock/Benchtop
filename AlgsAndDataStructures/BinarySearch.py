@@ -1,6 +1,6 @@
 import time
 
-# avg time to run on 1,000,000 ints -> 0.075 secs
+# avg time to run on 1,000,000 ints -> 0.193 secs
 
 # takes array sorted in increasing order, beginning and end indicies, and value to find
 # returns index of value or 
