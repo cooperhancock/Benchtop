@@ -6,20 +6,19 @@
 // avg time to run on 1,000,000 ints -> 0.074 secs
 // (with --release) -> 0.010 secs
 
+#![allow(non_snake_case)]
+#![allow(dead_code)]
+
 //mod HeapSort;
 //use HeapSort::*;
-use std::io::*;
 mod BinarySearch;
 use BinarySearch::*;
 mod Utils;
 use Utils::*;
-mod MergeSort;
-use MergeSort::*;
-mod QuickSort;
-use QuickSort::*;
-mod HeapSort;
-use HeapSort::*;
-use std::time::SystemTime;
+mod ArraySorting;
+use ArraySorting::*;
+mod Subsequences;
+use Subsequences::*;
 
 fn main() {
 
@@ -27,12 +26,17 @@ fn main() {
     println!("| Welcome to the Benchtop |");
     println!("---------------------------");
     
-    println!("test QuickSort");
-    test_sort(quick_sort, 10, 100);
-    println!("test MergeSort");
-    test_sort(merge_sort, 10, 100);
-    println!("test HeapSort");
-    test_sort(heap_sort, 10, 100);
+    let vec = rand_vec(10, 30);
+    vec_print(&vec);
+    println!("lis {}", lis(&vec));
+    println!("min deletions {}", min_deletions(&vec));
+
+    // println!("test QuickSort");
+    // test_sort(quick_sort, 10, 100);
+    // println!("test MergeSort");
+    // test_sort(merge_sort, 10, 100);
+    // println!("test HeapSort");
+    // test_sort(heap_sort, 10, 100);
     
     // let timeStart = SystemTime::now();
     // let mut big_array: Vec<i32> = Vec::with_capacity(1000000);

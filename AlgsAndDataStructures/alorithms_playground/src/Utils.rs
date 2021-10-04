@@ -39,7 +39,7 @@ pub fn vec_print(arr: &Vec<i32>){
 pub fn rand_vec(size: usize, range: i32) -> Vec<i32>{
     let mut rng = thread_rng();
     let mut vec: Vec<i32> = Vec::with_capacity(size);
-    for i in 0..(size){
+    for _i in 0..(size){
         vec.push(rng.gen_range(0..range));
     } 
     return vec;
@@ -52,7 +52,7 @@ pub fn test_sort(algorithm: fn(&mut Vec<i32>), iterations: usize, limit: i32){
         let mut vec = rand_vec(rng.gen_range(5..limit) as usize, 4*limit);
         algorithm(&mut vec);
         if is_sorted(&vec, |x,y| x<=y) == false {
-            println!("failed test on: ");
+            println!("failed test {} on : ", i);
             vec_print(&vec);
             return
         }
