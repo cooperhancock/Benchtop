@@ -26,13 +26,19 @@ fn main() {
     println!("| Welcome to the Benchtop |");
     println!("---------------------------");
     
-    let vec = rand_vec(10, 30);
+    let mut vec = rand_vec(10, 30);
     vec_print(&vec);
-    println!("lis {}", lis(&vec));
-    println!("min deletions {}", min_deletions(&vec));
+    println!("3rd element: {}", randomized_select(&mut vec, 0, 9, 3));
+    merge_sort(&mut vec);
+    vec_print(&vec);
 
-    // println!("test QuickSort");
-    // test_sort(quick_sort, 10, 100);
+    // let vec = rand_vec(10, 30);
+    // vec_print(&vec);
+    // println!("lis {}", lis(&vec));
+    // println!("min deletions {}", min_deletions(&vec));
+
+    println!("test QuickSort");
+    test_sort(quick_sort, 10, 100);
     // println!("test MergeSort");
     // test_sort(merge_sort, 10, 100);
     // println!("test HeapSort");

@@ -1,5 +1,7 @@
 use rand::prelude::*;
 
+use crate::Utils::vec_print;
+
 // swaps 2 elements in vec
 fn swap(list: &mut Vec<i32>, i: usize, j: usize){
     let temp = list[i];
@@ -14,34 +16,74 @@ pub fn quick_sort(arr: &mut Vec<i32>){
 }
 
 fn quick_sort_(arr: &mut Vec<i32>, p: isize, r: isize){
-    if r<=p{
+    if r<p{
         return;
     }
     let q = partition(arr, p, r);
-    quick_sort_(arr, p, q);
+    quick_sort_(arr, p, q-1);
     quick_sort_(arr, q+1, r);
 }
+
+// fn partition(arr: &mut Vec<i32>, p: isize, r: isize) -> isize{
+//     let mut rng = thread_rng();
+//     swap(arr, rng.gen_range(p..=r) as usize, r as usize); // move pivot to end
+//     let pivot = arr[r as usize]; // set pivot value
+//     let mut i: isize = p-1;
+//     let mut j: isize = p;
+//     // from beginning of slice to pivot
+//     while j<r {
+//         if arr[j as usize] > pivot { // if bigger than pivot, increase big region
+//             j += 1;
+//         } else { // else swap with first big item
+//             swap(arr, (i+1) as usize, j as usize);
+//             i += 1; // make small region bigger to encompass new small item
+//             j += 1; // make big region bigger to encompass new big item at end
+//         }
+//     }
+//     swap(arr, r as usize, (i+1) as usize); // swap pivot with first big item to be between small and big regions
+//     return i // return pivot location
+// }
 
 fn partition(arr: &mut Vec<i32>, p: isize, r: isize) -> isize{
     let mut rng = thread_rng();
     swap(arr, rng.gen_range(p..=r) as usize, r as usize); // move pivot to end
-    let pivot = arr[r as usize]; // set pivot value
-    let mut i: isize = -1;
-    let mut j: isize = 0;
-    // from beginning of slice to pivot
-    while j<r {
-        if arr[j as usize] > pivot { // if bigger than pivot, increase big region
-            j += 1;
-        } else { // else swap with first big item
-            swap(arr, (i+1) as usize, j as usize);
-            i += 1; // make small region bigger to encompass new small item
-            j += 1; // make big region bigger to encompass new big item at end
+    let x = arr[r as usize];
+    let mut i = p-1;
+    for j in p..r{
+        if arr[j as usize] <= x{
+            i = i+1;
+            swap(arr, i as usize, j as usize);
         }
     }
-    swap(arr, r as usize, (i+1) as usize); // swap pivot with first big item to be between small and big regions
-    return i // return pivot location
+    swap(arr, (i+1) as usize, r as usize);
+    return i+1;
 }
 
+// not sorting but actually selection //
+
+// finds kth element in vec (purposely designed iteratively for a class :/ )
+pub fn randomized_select(arr: &mut Vec<i32>, p: isize, r: isize, k: isize) -> i32{
+    let mut i = p;
+    let mut j = r;
+    let mut k_ = k;
+    while j > i {
+        let q = partition(arr, i, j);
+        vec_print(arr);
+        println!("q {}", q);
+        if q == k_ {
+            return arr[q as usize];
+        }
+        else if (q-i+1) >= k_ {
+            j = q;
+        }
+        else{
+            i = q+1;
+            k_ = k_ - (q-i+1);
+        }
+        println!("i, j {}, {}", i, j);
+    }
+    return arr[i as usize];
+}
 
 // MERGE SORT //
 
