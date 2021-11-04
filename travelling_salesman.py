@@ -8,7 +8,7 @@ import csv
 raw_problem = []
 
 # assemble raw problem from csv
-with open('tsp_test_input.csv') as csvfile:
+with open('fewer_european_cities.csv') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         raw_problem.append(row)
