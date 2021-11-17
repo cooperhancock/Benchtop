@@ -47,9 +47,14 @@ def factorial_tsp(p: dict) -> tuple:
     routes = permutations(list(p.keys()), [], [])
     for r in routes:
         r += [r[0]]
-    costs = [distance(p, i, 0) for i in routes]
-    return routes[costs.index(min(costs))], min(costs)
+    # costs = [distance(p, i, 0) for i in routes]
+    # return routes[costs.index(min(costs))], min(costs)
 
+    # brought to you by Ritik Mishra
+    costs = ((distance(p, i, 0), idx) for idx, i in enumerate(routes))
+    min_cost, min_cost_idx = min(costs)
+    return routes[min_cost_idx], min_cost
+    
 problem = format_problem(raw_problem)
 print_problem(problem)
 print(f'TSP brute force solution: {factorial_tsp(problem)}')

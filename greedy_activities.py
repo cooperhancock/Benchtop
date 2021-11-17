@@ -1,3 +1,10 @@
+from dataclasses import dataclass
+
+@dataclass
+class Activity2:
+    name: str
+    start: int
+    finish: int
 
 class Activity:
     def __init__(self, name, start, finish) -> None:
