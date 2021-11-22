@@ -1,10 +1,14 @@
-class dsf:
-    def __init__(self, set: set) -> None:
-        self.p = {i: None for i in set} # initialize parent of each item to None (not in any set)
-        self.rank = {i: None for i in set} # initialize each rank to None (not in any set)
+from typing import Dict, Generic, TypeVar, Optional, Union
+
+T = TypeVar('T')
+
+class dsf(Generic[T]):
+    def __init__(self, set: set[T]) -> None:
+        self.p: dict[T, Optional[T]] = {i: None for i in set} # initialize parent of each item to None (not in any set)
+        self.rank: dict[T, int] = {i: 0 for i in set} # initialize each rank to None (not in any set)
     
     def __repr__(self) -> str:
-        sets = {i: [] for i in list(self.p.values())}
+        sets = {i: [] for i in self.p.values()}
         for i in self.p:
             sets[self.p[i]].append(i)
         s = ''
@@ -25,19 +29,21 @@ class dsf:
             print('Error: indicated value not in dataset')
 
     # finds representative node of a set (i.e. the set the node is in)
-    def find_set(self, x):
+    def find_set(self, x) -> Optional[T]:
         try:
-            if not x == self.p[x]:
+            if x != self.p[x]:
                 self.p[x] = self.find_set(self.p[x])
             return self.p[x]
         except KeyError:
             print('Error: indicated value not in dataset')
 
     # join 2 sets together
-    def union(self, x, y) -> None:
+    def union(self, x: T, y: T) -> None:
         try:
             i = self.find_set(x)
             j = self.find_set(y)
+            assert i is not None
+            assert j is not None
             if self.rank[i] > self.rank[j]:
                 self.p [j] = i
             else:
